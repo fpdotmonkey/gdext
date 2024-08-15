@@ -119,6 +119,13 @@ pub enum FieldExport {
     /// ### Property hints
     /// - `COLOR_NO_ALPHA`
     ColorNoAlpha,
+
+    /// ### GDScript annotations
+    /// - `@export_storage`
+    ///
+    /// ### Property hints
+    /// - `PROPERTY_NO_STORAGE`
+    Storage,
 }
 
 impl FieldExport {
@@ -251,6 +258,10 @@ impl FieldExport {
 
         if parser.handle_alone("color_no_alpha")? {
             return Ok(Self::ColorNoAlpha);
+        }
+
+        if parser.handle_alone("storage")? {
+            return Ok(Self::Storage);
         }
 
         Ok(FieldExport::Default)
@@ -494,6 +505,7 @@ impl FieldExport {
                 export_placeholder(#placeholder)
             },
             FieldExport::ColorNoAlpha => quote_export_func! { export_color_no_alpha() },
+            FieldExport::Storage => quote_export_func! { export_storage() },
         }
     }
 }

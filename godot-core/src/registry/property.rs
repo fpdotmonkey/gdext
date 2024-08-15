@@ -326,6 +326,17 @@ pub mod export_info_functions {
         }
     }
 
+    #[cfg(since_api = "4.3")]
+    /// Equivalent to `@export_storage` in Godot.  It tags a property to be serialized, but not displayed in the editor.
+    ///
+    /// See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_exports.html#export-storage.
+    pub fn export_storage() -> PropertyHintInfo {
+        PropertyHintInfo {
+            hint: PropertyHint::STORAGE,
+            hint_string: "".into(),
+        }
+    }
+
     macro_rules! default_export_funcs {
         (
             $( $function_name:ident => $property_hint:ident, )*

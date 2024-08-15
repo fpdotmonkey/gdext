@@ -302,6 +302,9 @@ struct CheckAllExports {
 
     #[export(color_no_alpha)]
     color_no_alpha: Color,
+
+    #[export(storage)]
+    storage: i32,
 }
 
 #[derive(GodotConvert, Var, Export, Eq, PartialEq, Debug)]
